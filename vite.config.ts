@@ -3,6 +3,8 @@ import { defineConfig } from "vite";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 export default defineConfig({
+  base: "/IEF-demo/",
+
   plugins: [react(), cssInjectedByJsPlugin()],
 
   // Dev server configuration
@@ -14,18 +16,10 @@ export default defineConfig({
     },
   },
 
-  // Build configuration for library output
+  // App build — produces a self-contained element.html with bundled JS
   build: {
-    lib: {
-      entry: "./src/index.ts",
-      formats: ["es", "umd"],
-      name: "InfinityComponent",
-    },
     rollupOptions: {
-      external: [],
-      output: {
-        globals: {},
-      },
+      input: "./element.html",
     },
   },
 });
